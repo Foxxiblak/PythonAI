@@ -1,0 +1,1 @@
+{"files": [".DS_Store", "ttt.txt", "LICENSE", "ttt_1.txt", "math_func.py", "README.md", ".gitignore", "main.py", "listdir.txt"], "dirs": ["system_module", "test", "__pycache__", "test_1", ".git", "games", "pytests", ".idea"]}
