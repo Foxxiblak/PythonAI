@@ -1,6 +1,8 @@
 import requests
 import base64
-from config import GITHUB_TOKEN, GITHUB_API_URL
+from config import GITHUB_TOKEN, GITHUB_API_URL, SEARCH_CODE
+from classifier import vulnerabilities
+from data_processing import parse_github_response
 
 headers = {
     'Authorization': f'token {GITHUB_TOKEN}',
@@ -9,28 +11,24 @@ headers = {
 
 languages_and_keywords = {
     'python': ['django', 'flask'],
-    'java': [],
-    'c#': [],
+    'java': ['spring', 'hibernate', 'struts'],
+    'c#': ['wpf'],
 }
 
-def params():
+def params(index_val):
     queries = []
     for language, keywords in languages_and_keywords.items():
-        if keywords:
-            for keyword in keywords:
-                query = f'{keyword}+language:{language}'
-                queries.append(query)
-        else:
-            queries.append(f'language:{language}')
-    return queries
+        query = f'{vulnerabilities[index_val].keyword} in:file language:{language}'
+        queries.append(query)
+    return queries, language
 
-def get_response():
-    queries = params()
+def get_response(index_val):
+    queries, language = params(index_val)
     res = []
     for query in queries:
-        response = requests.get(GITHUB_API_URL, headers=headers, params={'q': query})
+        response = requests.get(f"{GITHUB_API_URL}{SEARCH_CODE}", headers=headers, params={'q': query})
         if response.status_code == 200:
-            res += response.json()['items']
+            parse_github_response(response.json()['items'], language, index_val)
         else:
             print(f"Error in search data: {response.status_code}")
             return []
