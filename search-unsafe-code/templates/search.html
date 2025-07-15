@@ -9,6 +9,25 @@
     <body>
         <div id="navbar"></div>
 
+        <p class="title-text">#: Поиск репозиториев с уязвимостями</p>
+        <form class="form-container" action="">
+          <select name="vulnerabilities" id="vulnerabilities" class="select">
+            <option value="A1">A1: SQL-инъекция</option>
+            <option value="A2">A2: Выполнение команд оболочки (Command Injection)</option>
+            <option value="A3">A3: XSS (Межсайтовый скриптинг)</option>
+            <option value="A4">A4: Жестко закодированные учётные данные</option>
+            <option value="A5">A5: Отсутствие проверки вводимых данных</option>
+            <option value="B1">B1: CSRF (Межсайтовая подделка запроса)</option>
+            <option value="B2">B2: Неправильное управление сессиями</option>
+            <option value="B3">B3: Уязвимости при работе с файлами</option>
+            <option value="B4">B4: Отсутствие шифрования</option>
+            <option value="C1">C1: Использование уязвимых библиотек</option>
+            <option value="C2">C2: Ошибки конфигурации</option>
+            <option value="C3">C3: Необработанные исключения</option>
+          </select>
+          <input type="submit" value="JUST DO IT!" class="submit-button">
+        </form>
+
         <script>
             fetch('navbar.html')
                 .then(res => res.text())
