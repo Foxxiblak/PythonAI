@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="styles.css">
+
+        <title>Главная</title>
+    </head>
+    <body>
+        <div id="navbar"></div>
+        <p class="title-text">
+            Классификация репозиториев с небезопасным кодом
+        </p>
+
+        <div class="row-container tab-container">
+            <button class="tablink active" onclick="setActiveTab(this)">Критические</button>
+            <button class="tablink" onclick="setActiveTab(this)">Средние</button>
+            <button class="tablink" onclick="setActiveTab(this)">Низкие</button>
+        </div>
+
+        <script>
+          fetch('navbar.html')
+            .then(res => res.text())
+            .then(html => {
+              document.getElementById('navbar').innerHTML = html;
+
+              const script = document.createElement('script');
+              script.src = 'navbar.js';
+              document.body.appendChild(script);
+            });
+
+          function setActiveTab(clickedButton) {
+            const tabs = document.querySelectorAll('.tablink');
+            tabs.forEach(tab => tab.classList.remove('active'));
+            clickedButton.classList.add('active');
+          }
+        </script>
+
+    </body>
+</html>
