@@ -9,13 +9,70 @@
     <body>
         <div id="navbar"></div>
         <p class="title-text">
-            Классификация репозиториев с небезопасным кодом
+            # Классификация репозиториев с небезопасным кодом
         </p>
 
         <div class="row-container tab-container">
-            <button class="tablink active" onclick="setActiveTab(this)">Критические</button>
-            <button class="tablink" onclick="setActiveTab(this)">Средние</button>
-            <button class="tablink" onclick="setActiveTab(this)">Низкие</button>
+            <button class="tablink active" data-tab="critical" onclick="setActiveTab(this)">Критические</button>
+            <button class="tablink" data-tab="medium" onclick="setActiveTab(this)">Средние</button>
+            <button class="tablink" data-tab="low" onclick="setActiveTab(this)">Низкие</button>
+        </div>
+
+        <div class="tab-content" data-tab="critical">
+            <div class="tab-item">
+                <p class="tab-item-title">%: A1: SQL-инъекция</p>
+                <p>Внедрение SQL-кода через пользовательский ввод без параметризации, позволяющее выполнять произвольные запросы к базе данных.</p>
+            </div>
+            <div class="tab-item">
+                <p class="tab-item-title">%: A2: Выполнение команд оболочки (Command Injection)</p>
+                <p>Использование пользовательского ввода в системных командах (os.system, exec, subprocess), что позволяет запускать произвольные команды на сервере.</p>
+            </div>
+            <div class="tab-item">
+                <p class="tab-item-title">%: A3: XSS (Межсайтовый скриптинг)</p>
+                <p>Внедрение JavaScript/HTML кода в веб-страницу, что может привести к краже куки, перенаправлениям и выполнению действий от имени пользователя.</p>
+            </div>
+            <div class="tab-item">
+                <p class="tab-item-title">%: A4: Жестко закодированные учётные данные</p>
+                <p>Наличие в коде паролей, токенов, ключей API или других секретов, что может привести к их утечке и компрометации.</p>
+            </div>
+            <div>
+                <p class="tab-item-title">%: A5: Отсутствие проверки вводимых данных</p>
+                <p>Отсутствие валидации или фильтрации данных от пользователя, что может привести к множеству уязвимостей, включая XSS, SQLi, Command Injection.</p>
+            </div>
+        </div>
+
+        <div class="tab-content" data-tab="medium">
+            <div class="tab-item">
+                <p class="tab-item-title">%: B1: CSRF (Межсайтовая подделка запроса)</p>
+                <p>Атака, при которой злоумышленник заставляет пользователя выполнить нежелательный запрос к сайту, на котором он авторизован.</p>
+            </div>
+            <div class="tab-item">
+                <p class="tab-item-title">%: B2: Неправильное управление сессиями</p>
+                <p>Использование ненадёжных методов хранения или генерации сессионных токенов, отсутствие таймаутов или проверки подлинности.</p>
+            </div>
+            <div class="tab-item">
+                <p class="tab-item-title">%: B3: Уязвимости при работе с файлами  </p>
+                <p>Обработка файлов без проверки расширения, размера или пути (например, ../), что может привести к загрузке вредоносных файлов или чтению системных.</p>
+            </div>
+            <div>
+                <p class="tab-item-title">%: B4: Отсутствие шифрования</p>
+                <p>Передача или хранение чувствительных данных (например, паролей, токенов) в незашифрованном виде.</p>
+            </div>
+        </div>
+
+        <div class="tab-content" data-tab="low">
+            <div class="tab-item">
+                <p class="tab-item-title">%: C1: Использование уязвимых библиотек</p>
+                <p>Использование сторонних библиотек, содержащих известные уязвимости, например по CVE.</p>
+            </div>
+            <div class="tab-item">
+                <p class="tab-item-title">%: C2: Ошибки конфигурации </p>
+                <p>Использование небезопасных дефолтных настроек, открытых портов, слабых политик безопасности.</p>
+            </div>
+            <div>
+                <p class="tab-item-title">%: C3: Необработанные исключения </p>
+                <p>Отсутствие try/except, что может привести к утечке стек-трейсов и информации об архитектуре приложения. </p>
+            </div>
         </div>
 
         <script>
@@ -33,8 +90,22 @@
             const tabs = document.querySelectorAll('.tablink');
             tabs.forEach(tab => tab.classList.remove('active'));
             clickedButton.classList.add('active');
-          }
-        </script>
 
+            const selectedTab = clickedButton.getAttribute('data-tab');
+
+            const contents = document.querySelectorAll('.tab-content');
+            contents.forEach(content => {
+              if (content.getAttribute('data-tab') === selectedTab) {
+                content.style.display = 'block';
+              } else {
+                content.style.display = 'none';
+              }
+            });
+          }
+
+          document.addEventListener('DOMContentLoaded', () => {
+            setActiveTab(document.querySelector('.tablink.active'));
+          });
+        </script>
     </body>
 </html>

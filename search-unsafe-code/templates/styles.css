@@ -25,7 +25,20 @@ body {
     background-color: #f9f9f9;
     margin-left: 100px;
     margin-right: 100px;
+    margin-bottom: 100px;
     color: #4B4B4B;
+}
+
+html {
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+    display: none;
 }
 
 .row-container {
@@ -41,7 +54,7 @@ body {
 }
 
 .title-text {
-    font-size: 20px;
+    font-size: 18px;
     font-weight: 500;
 }
 
@@ -66,3 +79,22 @@ body {
   font-weight: 700;
 }
 
+.tab-content {
+    padding: 20px;
+    border: 1px solid #dcdcdc;
+    border-top: 0px;
+    border-bottom-right-radius: 8px;
+    border-bottom-left-radius: 8px;
+}
+
+.tab-item {
+    border-bottom: 1px solid #dcdcdc;
+}
+
+.tab-item-title {
+    font-weight: 600;
+}
+
+.tab-content[data-tab="critical"] {
+  display: block;
+}
