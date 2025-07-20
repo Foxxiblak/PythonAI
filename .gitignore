@@ -207,3 +207,4 @@ marimo/_lsp/
 __marimo__/
 search-unsafe-code/config.py
 safe-commit/config.py
+parse-html/config.py
