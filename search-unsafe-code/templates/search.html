@@ -18,26 +18,26 @@
                 </option>
               {% endfor %}
             </select>
-          <input type="submit" value="JUST DO IT!" class="submit-button">
-            {% if results %}
-                {% for item in results %}
-                  {% for url, data in item.items() %}
-                    <div class="profile-avatar tab-item">
-                        <div class="profile">
-                            <img src="{{ data.owner.avatar_url }}" width="60" height="60" class="avatar"/>
-                            <div>
-                                <p class="profile"><strong>Автор:</strong> {{ data.owner.login }}</p>
-                                <p class="profile"><strong>Язык:</strong> {{ data.language }}, {{ data.level }}</p>
-                                <p class="profile"><a href="{{ data.owner.repo }}" target="_blank">{{ data.owner.repo }}</a></p>
-                            </div>
-                        </div>
-                        <p class="profile"><a href="{{ url }}" target="_blank">Файл с возможной уязвимостью</a></p>
-                    </div>
-                    {% endfor %}
-                {% endfor %}
-            {% else %}
-                <p>No repositories found!</p>
-            {% endif %}
+            <input type="submit" value="JUST DO IT!" class="submit-button">
         </form>
+        {% if results %}
+            {% for item in results %}
+              {% for url, data in item.items() %}
+                <div class="profile-avatar tab-item">
+                    <div class="profile">
+                        <img src="{{ data.owner.avatar_url }}" width="60" height="60" class="avatar"/>
+                        <div>
+                            <p class="profile"><strong>Автор:</strong> {{ data.owner.login }}</p>
+                            <p class="profile"><strong>Язык:</strong> {{ data.language }}, {{ data.level }}</p>
+                            <p class="profile"><a href="{{ data.owner.repo }}" target="_blank">{{ data.owner.repo }}</a></p>
+                        </div>
+                    </div>
+                    <p class="profile"><a href="{{ url }}" target="_blank">Файл с возможной уязвимостью</a></p>
+                </div>
+                {% endfor %}
+            {% endfor %}
+        {% else %}
+            <p>No repositories found!</p>
+        {% endif %}
     </body>
 </html>

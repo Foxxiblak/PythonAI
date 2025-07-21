@@ -4,7 +4,6 @@ from static.scripts.classifier import vulnerabilities
 def parse_github_response(items: [], lng: str, index_val):
     data = []
     for item in items:
-        print(item, end="\n\n\n\n\n\n\n")
         data.append({
             item['html_url']: {
                 'language': lng,
