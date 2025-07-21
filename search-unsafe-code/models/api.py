@@ -1,8 +1,8 @@
 import requests
 import base64
 from config import GITHUB_TOKEN, GITHUB_API_URL, SEARCH_CODE
-from classifier import vulnerabilities
-from data_processing import parse_github_response
+from static.scripts.classifier import vulnerabilities
+from views.data_processing import parse_github_response
 
 headers = {
     'Authorization': f'token {GITHUB_TOKEN}',
@@ -28,10 +28,9 @@ def get_response(index_val):
     for query in queries:
         response = requests.get(f"{GITHUB_API_URL}{SEARCH_CODE}", headers=headers, params={'q': query})
         if response.status_code == 200:
-            parse_github_response(response.json()['items'], language, index_val)
+            res = parse_github_response(response.json()['items'], language, index_val)
         else:
             print(f"Error in search data: {response.status_code}")
-            return []
     return res
 
 def get_content(raw_url):

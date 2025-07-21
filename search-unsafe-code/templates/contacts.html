@@ -2,23 +2,12 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <link rel="stylesheet" href="styles.css">
+        <link rel="stylesheet" href="static/css/styles.css">
 
-        <title>Контакты</title>
+        <title>OWASP</title>
     </head>
     <body>
-        <div id="navbar"></div>
-
-        <script>
-            fetch('navbar.html')
-                .then(res => res.text())
-                .then(html => {
-                    document.getElementById('navbar').innerHTML = html;
-
-                    const script = document.createElement('script');
-                    script.src = 'navbar.js';
-                    document.body.appendChild(script);
-            });
-        </script>
+        {% include 'navbar.html' %}
+        <script src="{{ url_for('static', filename='scripts/navbar.js') }}"></script>
     </body>
 </html>

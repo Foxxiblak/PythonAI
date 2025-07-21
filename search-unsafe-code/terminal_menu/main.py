@@ -1,6 +1,6 @@
 import sys
-from classifier import vulnerabilities
-from api import get_response
+from static.scripts.classifier import vulnerabilities
+from models.api import get_response
 
 def print_menu():
     for index, item in enumerate(vulnerabilities, start=1):

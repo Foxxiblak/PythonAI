@@ -2,12 +2,13 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <link rel="stylesheet" href="styles.css">
-
+        <link rel="stylesheet" href="/static/css/styles.css">
         <title>Главная</title>
     </head>
     <body>
-        <div id="navbar"></div>
+        {% include 'navbar.html' %}
+        <script src="{{ url_for('static', filename='scripts/navbar.js') }}"></script>
+
         <p class="title-text">
             #: Классификация репозиториев с небезопасным кодом
         </p>
@@ -76,16 +77,6 @@
         </div>
 
         <script>
-          fetch('navbar.html')
-            .then(res => res.text())
-            .then(html => {
-              document.getElementById('navbar').innerHTML = html;
-
-              const script = document.createElement('script');
-              script.src = 'navbar.js';
-              document.body.appendChild(script);
-            });
-
           function setActiveTab(clickedButton) {
             const tabs = document.querySelectorAll('.tablink');
             tabs.forEach(tab => tab.classList.remove('active'));
