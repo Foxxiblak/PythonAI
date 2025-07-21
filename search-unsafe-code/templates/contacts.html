@@ -9,5 +9,14 @@
     <body>
         {% include 'navbar.html' %}
         <script src="{{ url_for('static', filename='scripts/navbar.js') }}"></script>
+        <p>{{contacts.title}}</p>
+        <p>{{contacts.about}}</p>
+        {% if contacts.contacts %}
+            {% for item in contacts.contacts %}
+                <p>{{item.point}}</p>
+                <p>{{item.address}}</p>
+            {% endfor %}
+        {% endif %}
+        <p><a href="{{ contacts.donate }}" target="_blank">Donate to the team</a></p>
     </body>
 </html>

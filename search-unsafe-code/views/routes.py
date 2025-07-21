@@ -1,6 +1,7 @@
 from flask import Blueprint, render_template, request
 from models.api import get_response
 from static.scripts.classifier import vulnerabilities
+from models.owasp_parser import get_title, about, get_donate_link, get_contact
 
 main = Blueprint('main', __name__)
 
@@ -17,6 +18,6 @@ def search():
     else:
         return render_template('search.html', vulnerabilities=vulnerabilities)
 
-@main.route('/contacts')
+@main.route('/contacts', methods=['GET'])
 def contacts():
-    return render_template('contacts.html')
+    return render_template('contacts.html', contacts={'title': get_title(), 'about': about(), 'donate': get_donate_link(), 'contacts': get_contact()})
