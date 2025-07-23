@@ -1,7 +1,9 @@
 from flask import Blueprint, render_template, request
-from models.api import get_response
-from static.scripts.classifier import vulnerabilities
 from models.owasp_parser import get_title, about, get_donate_link, get_contact
+from models.db import Vulnerability
+from sqlalchemy.future import select
+from db import SessionLocal
+from models.api import get_response
 
 main = Blueprint('main', __name__)
 
@@ -9,8 +11,13 @@ main = Blueprint('main', __name__)
 def home():
     return render_template('home.html')
 
+
 @main.route('/search', methods=['GET', 'POST'])
 def search():
+    with SessionLocal() as session:
+        result = session.execute(select(Vulnerability))
+        vulnerabilities = result.scalars().all()
+
     if(request.method == 'POST'):
         type_vul = request.form['vulnerabilities']
         results = get_response(int(type_vul))

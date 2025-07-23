@@ -206,5 +206,6 @@ marimo/_static/
 marimo/_lsp/
 __marimo__/
 search-unsafe-code/config.py
+search-unsafe-code/owasp.db
 safe-commit/config.py
 parse-html/config.py

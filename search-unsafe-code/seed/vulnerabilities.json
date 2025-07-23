@@ -1,0 +1,74 @@
+[
+  {
+    "class_id": "A1",
+    "name": "SQL Injection",
+    "keyword": "SELECT * FROM",
+    "severity": "critical"
+  },
+  {
+    "class_id": "A2",
+    "name": "Выполнение команд оболочки",
+    "keyword": "Runtime.getRuntime().exec",
+    "severity": "critical"
+  },
+  {
+    "class_id": "A3",
+    "name": "XSS (Межсайтовый скриптинг)",
+    "keyword": "echo $_GET",
+    "severity": "critical"
+  },
+  {
+    "class_id": "A4",
+    "name": "Жестко закодированные учетные данные",
+    "keyword": "api_key",
+    "severity": "critical"
+  },
+  {
+    "class_id": "A5",
+    "name": "Отсутствие проверки вводимых данных",
+    "keyword": "request.GET[",
+    "severity": "critical"
+  },
+    {
+    "class_id": "B1",
+    "name": "CSRF",
+    "keyword": "POST",
+    "severity": "medium"
+  },
+    {
+    "class_id": "B2",
+    "name": "Неправильное управление сессиями",
+    "keyword": "session_id",
+    "severity": "medium"
+  },
+    {
+    "class_id": "B3",
+    "name": "Уязвимости при работе с файлами",
+    "keyword": "move_uploaded_file($_FILES",
+    "severity": "medium"
+  },
+    {
+    "class_id": "B4",
+    "name": "Отсутствие шифрования данных",
+    "keyword": "http://",
+    "severity": "medium"
+  },
+    {
+    "class_id": "C1",
+    "name": "Использование уязвимых библиотек",
+    "keyword": "requests==2.18",
+    "severity": "low"
+  },
+    {
+    "class_id": "C2",
+    "name": "Ошибки конфигурации",
+    "keyword": "DEBUG = True",
+    "severity": "low"
+  },
+    {
+    "class_id": "C3",
+    "name": "Необработанные исключения",
+    "keyword": "catch(Exception e) { e.printStackTrace() }",
+    "severity": "low"
+  }
+]
